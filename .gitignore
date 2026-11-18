@@ -1,0 +1,21 @@
+# environments and model caches (multi-GB, never commit)
+venv/
+.venv/
+hf-cache/
+__pycache__/
+*.pyc
+
+# personal media: voice samples, recordings, renders
+*.wav
+*.mp3
+*.m4a
+*.mp4
+*.mkv
+*.mov
+samples/
+out/
+work/
+
+# release zips are attached to GitHub Releases, not committed
+dist/
+*.zip
