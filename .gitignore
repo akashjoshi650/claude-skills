@@ -19,3 +19,6 @@ work/
 # release zips are attached to GitHub Releases, not committed
 dist/
 *.zip
+
+# exception: the approved AI narrator reference (Kokoro hm_omega sample, Apache-2.0)
+!hinglish-story-reel/assets/ref_voice.wav

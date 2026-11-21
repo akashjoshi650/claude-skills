@@ -1,0 +1,68 @@
+{
+ "title": "Bihar ka Nakli Thana",
+ "voice": "AI voice: Chatterbox multilingual (Hindi) with a Kokoro hm_omega reference; exaggeration 0.75, cfg 0.35, temp 0.85",
+ "captions": "roman",
+ "lead": 0.3,
+ "outro": 1.2,
+ "gap": 0.18,
+ "music": "bounce",
+ "sources": [
+  "ThePrint/ANI 23 Aug 2022: fake police station in Anurag guest house near Banka town police station, Bihar; 7 arrested incl. mastermind Bhola Yadav; seized country-made pistol, 4 police uniforms, 500+ PM Awas Yojana forms, cheque books, 5 phones; Anita Murmu and Julie Kumari Manjhi paid Bhola Rs 90,000 and Rs 55,000 for jobs and thought they were recruited in the police.",
+  "DESIblitz 20 Aug 2022 (Yahoo/AFP-based): 500 m from the real station, ran 8 months; Rs 100-500 for a routine complaint, thousands for housing allotment and police jobs; forms never sent on; caught at a local mall 'site inspection'; real station head Shambhu Yadav noticed the gun was not police standard issue, asked her posting, she got nervous.",
+  "Madam is not named on screen (she claims she was a scam victim). Visuals are original cartoon art."
+ ],
+ "lines": [
+  {
+   "text": "बिहार में कुछ लोगों ने, असली थाने से सिर्फ़ पाँच सौ मीटर दूर, अपना नकली थाना खोल दिया।",
+   "roman": "Bihar mein kuch logon ne, asli thane se sirf 500 meter door, apna nakli thana khol diya."
+  },
+  {
+   "text": "और भाई, आठ महीने तक किसी को पता ही नहीं चला!",
+   "roman": "Aur bhai, 8 mahine tak kisi ko pata hi nahi chala!"
+  },
+  {
+   "text": "जगह? बांका का अनुराग गेस्ट हाउस। होटल का कमरा, बन गया थाना।",
+   "roman": "Jagah? Banka ka Anurag guest house. Hotel ka kamra, ban gaya thana."
+  },
+  {
+   "text": "वर्दी, टोपी, बिल्ला, और कमर पे पिस्तौल। एक मैडम बनी थानेदार, एक साहब बने बड़े अफ़सर।",
+   "roman": "Vardi, topi, billa, aur kamar pe pistol. Ek madam bani thanedar, ek sahab bane bade afsar."
+  },
+  {
+   "text": "काम क्या था? शिकायत लिखवानी है? सौ से पाँच सौ रुपये।",
+   "roman": "Kaam kya tha? Shikayat likhwani hai? 100 se 500 rupaye."
+  },
+  {
+   "text": "सरकारी घर का फ़ॉर्म? पैसे दो। पुलिस की नौकरी? हज़ारों दो।",
+   "roman": "Sarkari ghar ka form? Paise do. Police ki naukri? Hazaaron do."
+  },
+  {
+   "text": "पाँच सौ से ज़्यादा फ़ॉर्म जमा किए, और एक भी आगे नहीं भेजा!",
+   "roman": "500 se zyada form jama kiye, aur ek bhi aage nahi bheja!"
+  },
+  {
+   "text": "फिर एक दिन, मैडम एक मॉल में दुकानों की जांच करने पहुँच गईं।",
+   "roman": "Phir ek din, madam ek mall mein dukaano ki jaanch karne pahunch gayi."
+  },
+  {
+   "text": "वहाँ असली थानेदार ने देखा, कमर पे पुलिस वाली पिस्तौल नहीं, देसी कट्टा है!",
+   "roman": "Wahan asli thanedar ne dekha, kamar pe police wali pistol nahi, desi katta hai!"
+  },
+  {
+   "text": "पूछा, मैडम, आपकी पोस्टिंग कहाँ है? और मैडम के पसीने छूट गए।",
+   "roman": "Poocha, madam, aapki posting kahan hai? Aur madam ke paseene chhoot gaye."
+  },
+  {
+   "text": "अब असली ट्विस्ट सुनो। मैडम ने खुद नौकरी के लिए नब्बे हज़ार की रिश्वत दी थी, उसे लगा ये असली पुलिस है!",
+   "roman": "Ab asli twist suno. Madam ne khud naukri ke liye 90 hazaar ki rishwat di thi, use laga ye asli police hai!"
+  },
+  {
+   "text": "मतलब नकली थाने में, नकली पुलिस भी ठगी गई। मास्टरमाइंड भोला यादव, सबका बाप निकला!",
+   "roman": "Matlab nakli thane mein, nakli police bhi thagi gayi. Mastermind Bhola Yadav, sabka baap nikla!"
+  },
+  {
+   "text": "ये रील उस दोस्त को भेजो, जो बोलता है, मेरी ऊपर तक सेटिंग है। और लाइक कर दो, वरना नकली थाने भेज दूँगा!",
+   "roman": "Ye reel us dost ko bhejo, jo bolta hai, meri upar tak setting hai. Aur like kar do, warna nakli thane bhej dunga!"
+  }
+ ]
+}
