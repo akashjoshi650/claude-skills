@@ -8,7 +8,7 @@ description: Monthly report on an Indian stock and mutual fund portfolio, emaile
 Turns a stocks + mutual funds portfolio into an email report: what it's worth today, what moved, news that
 matters, where it could be in 5-30 years, and when the user could retire at different monthly withdrawals.
 
-`SKILL` = the folder this file is in. Scripts are in `SKILL/scripts/` and need only Python 3.9+ (standard library).
+`SKILL` = the folder this file is in. Scripts are in `SKILL/scripts/` and need only Python 3.9+ (standard library); the PDF step also needs a Chromium-based browser.
 
 If `SKILL/scripts/` is missing (the skill was saved without its files), get them from
 https://github.com/akashjoshi650/claude-skills/tree/main/portfolio-report, or do the same steps by hand: prices by
@@ -21,7 +21,9 @@ web search, and the projections with the formulas in step 4 in a short Python sn
 | 3. news on each holding | you, with web search | `news.json` |
 | 4. numbers, projections, retirement | `report.py` | `report.html`, `summary.json` |
 | 5. commentary | you, from `summary.json` + news | `commentary.md`, re-run step 4 |
-| 6. email it | Gmail connector | email in the user's inbox |
+| 6. this month's money plan | you, from the mix and the user's budget | `plan.json` |
+| 7. designed PDF (and a redacted one for sharing) | `make_pdf.py` | `report.pdf`, `report-redacted.pdf` |
+| 8. email it | Gmail connector | email in the user's inbox |
 
 ## Ground rules
 - **Not financial advice.** The report carries a disclaimer; keep it. In commentary, describe and explain (what
@@ -98,8 +100,36 @@ closer" only if you checked it by re-running with the new SIP). Then run step 4 
 Open `report.html` (or screenshot it) and check it before sending: no missing holdings you didn't expect,
 totals that look right against last month.
 
-## 6. Email
-Use the Gmail connector. Subject: `Portfolio report, <Month YYYY>: <value> (<change since last>)`. Body: the
+## 6. This month's money plan
+The user tells you this month's new money (one-time amount, stock budget). Write `plan.json` saying where it could go:
+```json
+{"summary": "one paragraph: the imbalance and the idea",
+ "items": [{"holding": "NIFTYBEES (Nifty 50 ETF)", "kind": "ETF, from the stock budget", "bucket": "Large",
+            "amount": 4080, "units": 14, "price": 291.40, "why": "one or two sentences"}],
+ "target_mix": {"Large": 50, "Mid": 30, "Small": 20},
+ "target_note": "where the target comes from; say it's a rule of thumb the user can change",
+ "hold_off": [{"holding": "...", "why": "..."}]}
+```
+Buckets: Large, Flexi/Multi, Mid, Small, Debt, Gold/Silver, Other. How to decide:
+- Rebalance with new money toward the target mix; never suggest selling just to rebalance (tax, exit loads).
+- Prefer what the user already holds, then broad low-cost index funds/ETFs. Don't pick individual stocks for them;
+  if they want stocks, explain the trade-off and let them choose.
+- Use whole units for ETFs/stocks at the latest price and keep the total within the budget.
+- Before any of this: if they have no emergency fund (about 6 months of expenses), say that comes first.
+- It's a rules-based idea, not advice. The PDF says so; keep that line.
+
+## 7. Designed PDF
+```
+python SKILL/scripts/make_pdf.py <dir>/out/<YYYY-MM> --plan <dir>/plan.json --news <dir>/news.json --commentary <dir>/commentary.md --name "<first name>"
+python SKILL/scripts/make_pdf.py <dir>/out/<YYYY-MM> --plan <dir>/plan.json --news <dir>/news.json --commentary <dir>/commentary.md --redact
+```
+Four A4 pages: cover with headline numbers, commentary and a mix donut; holdings bars and news; the money plan
+with before/after/target mix bars; projection chart and retirement table. `--redact` hides every rupee amount
+except the withdrawal options, for posting on LinkedIn etc. Uses Playwright if present, else headless
+Chrome/Edge; otherwise open the `-print.html` and Print to PDF. Look at the pages before sending.
+
+## 8. Email
+Use the Gmail connector. Attach `report.pdf` (base64) and use `report.html` as the body. Subject: `Portfolio report, <Month YYYY>: <value> (<change since last>)`. Body: the
 contents of `report.html` as the HTML body (it uses inline styles only, so Gmail keeps the layout).
 - If the connector has a send tool, send it to the `email` in `portfolio.json`.
 - If it can only create drafts (some Gmail connectors can't send), create the draft and tell the user it's
