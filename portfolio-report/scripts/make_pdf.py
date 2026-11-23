@@ -1,7 +1,7 @@
 """Render the monthly report as a designed, print-ready PDF (A4) with charts.
 
     python make_pdf.py <out_dir> [--plan plan.json] [--news news.json] [--commentary commentary.md]
-                       [--redact] [--name "Akash"]
+                       [--redact] [--name "<first name>"]
 
 Reads <out_dir>/summary.json (written by report.py) and writes <out_dir>/report-print.html and
 <out_dir>/report.pdf. Charts are inline SVG, so the HTML has no outside dependencies.
