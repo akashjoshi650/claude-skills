@@ -136,12 +136,15 @@ def value_holdings(pf, prices):
     rows, missing = [], []
     for f in pf.get('mutual_funds', []):
         p = prices.get('mf', {}).get(f['name'])
+        if not p and f.get('value') is not None:
+            # no units known (e.g. copied from an app screenshot): use the current value as given
+            p = {'nav': None, 'date': f.get('value_date'), 'source': 'you'}
         if not p:
             missing.append(f['name'])
             continue
-        val = f['units'] * p['nav']
+        val = f['units'] * p['nav'] if p.get('nav') is not None and f.get('units') else f['value']
         rows.append({'kind': 'Mutual fund', 'name': f['name'], 'category': f.get('category', 'Equity'),
-                     'qty': f['units'], 'price': p['nav'], 'price_date': p.get('date'), 'value': val,
+                     'qty': f.get('units'), 'price': p['nav'], 'price_date': p.get('date'), 'value': val,
                      'invested': f.get('invested'), 'sip': f.get('monthly_sip', 0), 'source': p.get('source')})
     for s in pf.get('stocks', []):
         p = prices.get('stocks', {}).get(s['symbol'])
@@ -173,7 +176,8 @@ def flags(rows, total, pf):
     stocks = [r for r in rows if r['kind'] == 'Stock']
     funds = [r for r in rows if r['kind'] == 'Mutual fund']
     for r in rows:
-        if r['kind'] == 'Stock' and r['weight'] > 10:
+        is_etf = 'etf' in f"{r['category']} {r['name']}".lower()
+        if r['kind'] == 'Stock' and not is_etf and r['weight'] > 10:
             out.append(f"{r['name']} is {r['weight']:.0f}% of the portfolio: one stock above 10% is concentrated.")
         if r['kind'] == 'Mutual fund' and r['weight'] > 35:
             out.append(f"{r['name']} is {r['weight']:.0f}% of the portfolio: a lot riding on one fund.")
@@ -194,7 +198,10 @@ def flags(rows, total, pf):
 def allocation(rows):
     alloc = {}
     for r in rows:
-        key = r['kind'] if r['kind'] == 'Stock' else f"{r['kind']}: {r['category']}"
+        if r['kind'] == 'Stock':
+            key = 'ETFs' if 'etf' in f"{r['category']} {r['name']}".lower() else 'Stocks'
+        else:
+            key = f"{r['kind']}: {r['category']}"
         alloc[key] = alloc.get(key, 0) + r['weight']
     return sorted(alloc.items(), key=lambda kv: -kv[1])
 
