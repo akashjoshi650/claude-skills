@@ -8,6 +8,7 @@ instructions, plus any scripts it needs.
 |---|---|
 | [own-voice-dub](own-voice-dub/) | Dub a video from Hindi (or any language) into English **in your own cloned voice**: local, free, GPU-accelerated. Whisper → translation → Chatterbox voice clone → word check → muxed MP4. Renders A/B/C versions with different voice settings to compare. |
 | [hinglish-story-reel](hinglish-story-reel/) | Turn a funny true story (cons, scams, jail escapes, weird history) into a ~70 s **Hindi/Hinglish Instagram Reel**, all in code and free: cartoon people in a 3D world, a smooth Hindi AI narrator (Chatterbox), romanized Hinglish captions, stickers, music and sound effects. The "Natwarlal sold the Taj Mahal" format. Needs the faceless-shorts skill for its Tall Tale 3D engine. |
+| [portfolio-report](portfolio-report/) | Monthly report on an **Indian stocks + mutual funds portfolio**, emailed to Gmail: latest NSE/BSE prices and AMFI NAVs, news on each holding, gains and concentration checks, 1-30 year projections with SIP and lump sum, and how many years until you can retire at different monthly withdrawals. Built to run on the 3rd of every month. Not financial advice. |
 
 More skills coming.
 

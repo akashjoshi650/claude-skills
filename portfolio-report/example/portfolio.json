@@ -1,0 +1,31 @@
+{
+  "_note": "EXAMPLE ONLY: made-up holdings. Copy this to a private folder, never commit your real portfolio.",
+  "email": "you@gmail.com",
+  "age": 30,
+  "monthly_sip": 30000,
+  "sip_step_up_pct": 10,
+  "lump_sum_this_month": 100000,
+  "monthly_withdrawals": [50000, 100000, 150000, 200000, 300000],
+  "assumptions": {
+    "inflation_pct": 6,
+    "returns_pct": {"conservative": 8, "base": 11, "optimistic": 13},
+    "post_retirement_return_pct": 7.5,
+    "years_in_retirement": 35
+  },
+  "mutual_funds": [
+    {"name": "Parag Parikh Flexi Cap Fund - Direct Plan - Growth", "amfi_code": "122639", "category": "Equity - Flexi cap",
+     "units": 3200.5, "invested": 210000, "monthly_sip": 15000},
+    {"name": "UTI Nifty 50 Index Fund - Direct Plan - Growth", "amfi_code": "120716", "category": "Equity - Index",
+     "units": 4100.0, "invested": 520000, "monthly_sip": 10000},
+    {"name": "HDFC Short Term Debt Fund - Direct Plan - Growth", "amfi_code": "119016", "category": "Debt - Short duration",
+     "units": 3000.0, "invested": 85000, "monthly_sip": 5000}
+  ],
+  "stocks": [
+    {"symbol": "RELIANCE", "exchange": "NSE", "qty": 40, "avg_price": 1250, "sector": "Energy"},
+    {"symbol": "HDFCBANK", "exchange": "NSE", "qty": 60, "avg_price": 1550, "sector": "Banking"},
+    {"symbol": "TCS", "exchange": "NSE", "qty": 15, "avg_price": 3900, "sector": "IT"}
+  ],
+  "other_assets": [
+    {"name": "EPF", "category": "Debt - EPF", "value": 350000}
+  ]
+}

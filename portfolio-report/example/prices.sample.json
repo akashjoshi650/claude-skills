@@ -1,0 +1,15 @@
+{
+  "_note": "EXAMPLE ONLY: made-up prices for a dry run without internet. Real runs write prices.json with fetch_prices.py.",
+  "fetched_at": "2026-12-03T09:00:00+05:30",
+  "mf": {
+    "Parag Parikh Flexi Cap Fund - Direct Plan - Growth": {"amfi_code": "122639", "nav": 92.4, "date": "02-Dec-2026", "source": "sample"},
+    "UTI Nifty 50 Index Fund - Direct Plan - Growth": {"amfi_code": "120716", "nav": 175.2, "date": "02-Dec-2026", "source": "sample"},
+    "HDFC Short Term Debt Fund - Direct Plan - Growth": {"amfi_code": "119016", "nav": 33.1, "date": "02-Dec-2026", "source": "sample"}
+  },
+  "stocks": {
+    "RELIANCE": {"price": 1420.5, "prev_close": 1408.0, "month_ago": 1385.0, "time": "2026-12-02T15:30:00+05:30", "source": "sample"},
+    "HDFCBANK": {"price": 1012.0, "prev_close": 1020.3, "month_ago": 1040.0, "time": "2026-12-02T15:30:00+05:30", "source": "sample"},
+    "TCS": {"price": 3150.0, "prev_close": 3122.0, "month_ago": 3300.0, "time": "2026-12-02T15:30:00+05:30", "source": "sample"}
+  },
+  "missing": []
+}
