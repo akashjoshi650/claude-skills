@@ -5,7 +5,7 @@
   "monthly_sip": 30000,
   "sip_step_up_pct": 10,
   "lump_sum_this_month": 100000,
-  "monthly_withdrawals": [50000, 100000, 150000, 200000, 300000],
+  "monthly_withdrawals": [20000, 35000, 50000, 100000, 150000],
   "assumptions": {
     "inflation_pct": 6,
     "returns_pct": {"conservative": 8, "base": 11, "optimistic": 13},

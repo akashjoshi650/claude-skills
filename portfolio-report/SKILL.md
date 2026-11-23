@@ -35,18 +35,46 @@ web search, and the projections with the formulas in step 4 in a short Python sn
 
 ## 1. The portfolio
 If `portfolio.json` exists, read it. Otherwise build it with the user, starting from `SKILL/example/portfolio.json`.
-Ask, in one message:
-1. Mutual funds: fund name (Direct/Regular, Growth/IDCW), units held, amount invested, monthly SIP into it.
-   Units and invested amounts are on the CAS statement (CAMS/KFintech) or the app they invest through.
-2. Stocks: NSE/BSE symbol, quantity, average buy price (from the broker's holdings page).
-3. Total monthly SIP, and whether it steps up each year (e.g. 10%).
-4. Any one-time money to invest this month (lump sum).
-5. Other assets to include, if they want (EPF, PPF, FDs, gold): name and current value.
-6. Age, the email to send the report to, and the monthly withdrawals they want retirement numbers for
-   (default: ₹50k, ₹1L, ₹1.5L, ₹2L a month, in today's rupees).
 
-Every month (when run by hand) ask only what changes: **"Same SIP? Any one-time amount this month? Any stocks
-or funds bought or sold?"** Update `portfolio.json`, and set `lump_sum_this_month` back to 0 after the report.
+**First run: ask everything in ONE message**, grouped like this. Say screenshots of their broker/MF app are fine
+(read values off them), that they can skip anything, and that you'll use a stated default and list it as a guess.
+
+*About you*
+1. Age.
+2. Email address for the report.
+3. Risk appetite: aggressive / balanced / cautious, or a target mix if they have one
+   (default by age: under 35 aggressive = 50% large, 30% mid, 20% small; 35-50 balanced = 60/25/15 plus 20% debt;
+   50+ cautious = more debt).
+4. Emergency fund: do they have about 6 months of expenses set aside? (If not, the money plan says that comes first.)
+5. Monthly withdrawals to test for retirement, in today's rupees. Default: ₹20k, ₹35k, ₹50k, ₹1L, ₹1.5L.
+   Optionally: the age they'd like to retire by.
+
+*What they hold*
+6. Mutual funds: each fund's name (Direct/Regular, Growth/IDCW), current value and amount invested, or units
+   (from the CAS statement or their app).
+7. Stocks and ETFs: symbol, quantity, average buy price (from the broker's holdings page).
+8. Other savings: PPF, EPF, RDs, FDs, NPS, gold/silver (digital, SGB, ETF), each with its **current balance**.
+
+*What goes in every month*
+9. SIP amount for each fund, and its date (e.g. the 4th). Do the SIPs step up each year? By how much?
+10. Monthly budget for buying stocks/ETFs.
+11. Monthly amounts into PPF, each RD (and any top-ups: size and how often), NPS, gold/silver (e.g. ₹15 a day),
+    and anything else.
+
+*This month*
+12. One-time money to invest this month (lump sum), and whether it's for funds, stocks, or either.
+
+If an answer is ambiguous (e.g. "₹15 a day in gold and silver": each, or total?), take the likely reading, say
+which you took, and ask in the same reply. Record every default you used in `_guesses` in `portfolio.json`
+and list them in your reply so the user can correct them.
+
+The monthly total that the projections use (`monthly_sip`) is everything in items 9-11 added up; keep the
+breakdown in `_monthly_sip_breakdown`. Note in the commentary that PPF/RD/FD earn about 7%, below the equity
+return scenarios.
+
+Every month after that (when run by hand) ask only what changes: **"Same SIPs and monthly amounts? Any one-time
+amount this month, and your stock budget? Any stocks or funds bought or sold? Any new savings (PPF/RD/FD) or
+changed balances?"** Update `portfolio.json`, and set `lump_sum_this_month` back to 0 after the report.
 On a scheduled run nobody is there to answer: use the file as is, and the email footer reminds the user to
 send changes before the 3rd.
 

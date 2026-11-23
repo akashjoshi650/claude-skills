@@ -392,7 +392,7 @@ def main():
     if sip is None:
         sip = sum(f.get('monthly_sip', 0) for f in pf.get('mutual_funds', []))
     lump = pf.get('lump_sum_this_month', 0) or 0
-    withdrawals = pf.get('monthly_withdrawals') or [50000, 100000, 150000, 200000]
+    withdrawals = pf.get('monthly_withdrawals') or [20000, 35000, 50000, 100000, 150000]
 
     months = asm['max_years'] * 12
     infl_m = monthly_rate(asm['inflation_pct'])
