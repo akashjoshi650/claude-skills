@@ -1,0 +1,52 @@
+name: Release skill zips
+
+# Push a tag like v0.3.0 (or run this by hand from the Actions tab) to build
+# one zip per skill folder and attach them to that tag's GitHub Release.
+# The zips keep the same names every release, so
+# https://github.com/<owner>/<repo>/releases/latest/download/<skill>.zip
+# always points at the newest one.
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Existing tag to build from (its release is created if missing)"
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    env:
+      TAG: ${{ github.event.inputs.tag || github.ref_name }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.tag || github.ref }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build zips
+        run: python tools/build_skill_zips.py
+
+      - name: Check each zip has <skill>/SKILL.md at the top
+        run: |
+          for z in dist/*.zip; do
+            skill=$(basename "$z" .zip)
+            unzip -l "$z" | grep -q " ${skill}/SKILL.md$" || { echo "::error::$z has no ${skill}/SKILL.md"; exit 1; }
+            if unzip -Z1 "$z" | grep -v "^${skill}/"; then echo "::error::$z has files outside ${skill}/"; exit 1; fi
+          done
+
+      - name: Create release if needed and upload zips
+        run: |
+          if ! gh release view "$TAG" >/dev/null 2>&1; then
+            gh release create "$TAG" --title "$TAG" --generate-notes --verify-tag
+          fi
+          gh release upload "$TAG" dist/*.zip --clobber
