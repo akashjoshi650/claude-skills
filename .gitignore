@@ -22,3 +22,9 @@ dist/
 
 # exception: the approved AI narrator reference (Kokoro hm_omega sample, Apache-2.0)
 !hinglish-story-reel/assets/ref_voice.wav
+
+# personal finance data for portfolio-report: keep your real portfolio out of this repo
+portfolio.json
+history.json
+prices.json
+!portfolio-report/example/portfolio.json
