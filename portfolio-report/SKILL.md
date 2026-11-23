@@ -10,6 +10,10 @@ matters, where it could be in 5-30 years, and when the user could retire at diff
 
 `SKILL` = the folder this file is in. Scripts are in `SKILL/scripts/` and need only Python 3.9+ (standard library).
 
+If `SKILL/scripts/` is missing (the skill was saved without its files), get them from
+https://github.com/akashjoshi650/claude-skills/tree/main/portfolio-report, or do the same steps by hand: prices by
+web search, and the projections with the formulas in step 4 in a short Python snippet.
+
 | step | who | output |
 |---|---|---|
 | 1. load or ask for the portfolio | you (Claude) | `portfolio.json` |
