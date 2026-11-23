@@ -28,8 +28,11 @@ Copy-Item -Recurse own-voice-dub "$env:USERPROFILE\.claude\skills\"
 For one project only, copy it into `<project>/.claude/skills/` instead. Then just ask Claude, e.g.
 *"Dub my video C:\Videos\lesson.mkv from Hindi to English in my own voice."*
 
-**Claude.ai / Claude desktop app:** download the skill's zip from [Releases](../../releases) (or zip the folder
-yourself so `SKILL.md` sits inside one top-level folder) and upload it under **Settings → Capabilities → Skills**.
+**Claude.ai / Claude desktop app:** download the skill's zip from [Releases](../../releases)
+([own-voice-dub.zip](../../releases/latest/download/own-voice-dub.zip),
+[hinglish-story-reel.zip](../../releases/latest/download/hinglish-story-reel.zip)) and upload it under
+**Settings → Capabilities → Skills**. To build the zips yourself, run `python tools/build_skill_zips.py`; they land
+in `dist/`, each with `SKILL.md` inside one top-level folder.
 Note: `own-voice-dub` runs local models on your GPU, so it needs an environment that can run Python and ffmpeg
 on your machine, like Claude Code.
 
@@ -80,6 +83,12 @@ Only clone your own voice or a voice whose owner clearly agreed. Chatterbox embe
 - [PyTorch](https://pytorch.org), [ffmpeg](https://ffmpeg.org)
 - hinglish-story-reel: the Tall Tale 3D engine of the faceless-shorts skill (not included here; installed separately),
   [Kokoro-82M](https://huggingface.co/hexgrad/Kokoro-82M) (Apache-2.0) for the narrator reference sample, [three.js](https://threejs.org) (MIT)
+
+## Releasing (maintainers)
+Push a version tag, e.g. `git tag v0.3.0 && git push origin v0.3.0`. The
+[Release skill zips](.github/workflows/release.yml) workflow builds one zip per skill folder (any top-level folder with
+a `SKILL.md`), checks each has `SKILL.md` inside a single top-level folder, and attaches them to that tag's GitHub
+Release, creating it if needed. You can also run it from the Actions tab with a tag name.
 
 ## License
 MIT. See [LICENSE](LICENSE). The models and libraries above keep their own licenses.
